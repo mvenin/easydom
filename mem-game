@@ -12,9 +12,7 @@ text-align:center;
 width: 50px; 
 height: 50px;
 }
-i {
-    vertical-align:middle;
-}
+
 </style>
 
 <div class='test well hide'>  <i class="icon-large icon-eye-close"> </i> </div>
@@ -22,7 +20,11 @@ i {
 
 
 <script>
-var initTable = function(tblId){
+var MemGame = {
+ state: {
+  lastItem:''
+ }, 
+ initTable: function(tblId){
  var t='';
  for(var i=1;i <= 6;i++){
   t = t + '<tr>';
@@ -33,31 +35,35 @@ var initTable = function(tblId){
   t = t + '</tr>';
  }
  $('#'+tblId).append(t);
-}
+},
 
-var addToggleCellClickHandler = function( img_storage ){
+ addToggleCellClickHandler: function( img_storage ){
  $('table div').each( function(i, el){
   $(el).click( function(ev){ 
     var src = $(ev.target);   
     var id = src.attr('id');
     var icon = $(img_storage.get(id)).clone();
+    console.log('state.lastItem '+ MemGame.state.lastItem );
+    $(MemGame.state.lastItem).remove();
+     
     if( $(src).is('i.icon-large') ){        
         $(src).remove();
     } else if( $(src).find('i.icon-large').length > 0 ) {  
         $(src).find('i.icon-large').remove();
     } else {
-      $(this).append( icon  );
-    }    
-  });
- });
-
-}
+      $(this).hide().append( icon  ).fadeIn(1000);
+      MemGame.state.lastItem = icon;
+    }     
+    });
+   });
+  }
+ };
 
 
 $(document).ready(function(){
 	img_storage = $('div.img-storage li i');
-    initTable('tbl');
-    addToggleCellClickHandler( img_storage );  
+    MemGame.initTable('tbl');
+    MemGame.addToggleCellClickHandler( img_storage );  
       
 });
 
