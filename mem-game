@@ -1,0 +1,141 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://marcoceppi.github.io/bootstrap-glyphicons/css/bootstrap.icon-large.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<style>
+div
+{
+border:2px;
+float: left;
+text-align:center;
+width: 50px; 
+height: 50px;
+}
+i {
+    vertical-align:middle;
+}
+</style>
+
+<div class='test well hide'>  <i class="icon-large icon-eye-close"> </i> </div>
+<div> <table id='tbl' border=1> </table> </div>
+
+
+<script>
+var initTable = function(tblId){
+ var t='';
+ for(var i=1;i <= 6;i++){
+  t = t + '<tr>';
+  for(var j=1; j <= 6; j++ ){  
+   var id= (i-1)*6 +j; 
+   t = t + '<td><div id=' + id +'/>' +'</td>';  
+  }
+  t = t + '</tr>';
+ }
+ $('#'+tblId).append(t);
+}
+
+var addToggleCellClickHandler = function( img_storage ){
+ $('table div').each( function(i, el){
+  $(el).click( function(ev){ 
+    var src = $(ev.target);   
+    var id = src.attr('id');
+    var icon = $(img_storage.get(id)).clone();
+    if( $(src).is('i.icon-large') ){        
+        $(src).remove();
+    } else if( $(src).find('i.icon-large').length > 0 ) {  
+        $(src).find('i.icon-large').remove();
+    } else {
+      $(this).append( icon  );
+    }    
+  });
+ });
+
+}
+
+
+$(document).ready(function(){
+	img_storage = $('div.img-storage li i');
+    initTable('tbl');
+    addToggleCellClickHandler( img_storage );  
+      
+});
+
+</script>
+
+<div class='hide img-storage'>
+<ul class="the-icons">
+        <li><i class="icon-large icon-eye-close"></i> icon-eye-close</li>
+        <li><i class="icon-large icon-warning-sign"></i> icon-warning-sign</li>
+        <li><i class="icon-large icon-plane"></i> icon-plane</li>
+        <li><i class="icon-large icon-calendar"></i> icon-calendar</li>
+        <li><i class="icon-large icon-random"></i> icon-random</li>
+        <li><i class="icon-large icon-comment"></i> icon-comment</li>
+        <li><i class="icon-large icon-magnet"></i> icon-magnet</li>
+        <li><i class="icon-large icon-chevron-up"></i> icon-chevron-up</li>
+        <li><i class="icon-large icon-chevron-down"></i> icon-chevron-down</li>
+        <li><i class="icon-large icon-retweet"></i> icon-retweet</li>
+        <li><i class="icon-large icon-shopping-cart"></i> icon-shopping-cart</li>
+        <li><i class="icon-large icon-folder-close"></i> icon-folder-close</li>
+        <li><i class="icon-large icon-folder-open"></i> icon-folder-open</li>
+        <li><i class="icon-large icon-resize-vertical"></i> icon-resize-vertical</li>
+        <li><i class="icon-large icon-resize-horizontal"></i> icon-resize-horizontal</li>
+        <li><i class="icon-large icon-hdd"></i> icon-hdd</li>
+        <li><i class="icon-large icon-bullhorn"></i> icon-bullhorn</li>
+        <li><i class="icon-large icon-bell"></i> icon-bell</li>
+        <li><i class="icon-large icon-certificate"></i> icon-certificate</li>
+        <li><i class="icon-large icon-thumbs-up"></i> icon-thumbs-up</li>
+        <li><i class="icon-large icon-thumbs-down"></i> icon-thumbs-down</li>
+        <li><i class="icon-large icon-hand-right"></i> icon-hand-right</li>
+        <li><i class="icon-large icon-hand-left"></i> icon-hand-left</li>
+        <li><i class="icon-large icon-hand-up"></i> icon-hand-up</li>
+        <li><i class="icon-large icon-hand-down"></i> icon-hand-down</li>
+        <li><i class="icon-large icon-circle-arrow-right"></i> icon-circle-arrow-right</li>
+        <li><i class="icon-large icon-circle-arrow-left"></i> icon-circle-arrow-left</li>
+        <li><i class="icon-large icon-circle-arrow-up"></i> icon-circle-arrow-up</li>
+        <li><i class="icon-large icon-circle-arrow-down"></i> icon-circle-arrow-down</li>
+        <li><i class="icon-large icon-globe"></i> icon-globe</li>
+        <li><i class="icon-large icon-wrench"></i> icon-wrench</li>
+        <li><i class="icon-large icon-tasks"></i> icon-tasks</li>
+        <li><i class="icon-large icon-filter"></i> icon-filter</li>
+        <li><i class="icon-large icon-briefcase"></i> icon-briefcase</li>
+        <li><i class="icon-large icon-fullscreen"></i> icon-fullscreen</li>
+        <li><i class="icon-large icon-volume-off"></i> icon-volume-off</li>
+        <li><i class="icon-large icon-volume-down"></i> icon-volume-down</li>
+        <li><i class="icon-large icon-volume-up"></i> icon-volume-up</li>
+        <li><i class="icon-large icon-qrcode"></i> icon-qrcode</li>
+        <li><i class="icon-large icon-barcode"></i> icon-barcode</li>
+        <li><i class="icon-large icon-tag"></i> icon-tag</li>
+        <li><i class="icon-large icon-tags"></i> icon-tags</li>
+        <li><i class="icon-large icon-book"></i> icon-book</li>
+        <li><i class="icon-large icon-bookmark"></i> icon-bookmark</li>
+        <li><i class="icon-large icon-print"></i> icon-print</li>
+        <li><i class="icon-large icon-camera"></i> icon-camera</li>
+        <li><i class="icon-large icon-font"></i> icon-font</li>
+        <li><i class="icon-large icon-bold"></i> icon-bold</li>
+        <li><i class="icon-large icon-italic"></i> icon-italic</li>
+        <li><i class="icon-large icon-text-height"></i> icon-text-height</li>
+        <li><i class="icon-large icon-text-width"></i> icon-text-width</li>
+        <li><i class="icon-large icon-align-left"></i> icon-align-left</li>
+        <li><i class="icon-large icon-align-center"></i> icon-align-center</li>
+        <li><i class="icon-large icon-align-right"></i> icon-align-right</li>
+        <li><i class="icon-large icon-align-justify"></i> icon-align-justify</li>
+        <li><i class="icon-large icon-list"></i> icon-list</li>
+        <li><i class="icon-large icon-indent-left"></i> icon-indent-left</li>
+        <li><i class="icon-large icon-indent-right"></i> icon-indent-right</li>
+        <li><i class="icon-large icon-facetime-video"></i> icon-facetime-video</li>
+        <li><i class="icon-large icon-picture"></i> icon-picture</li>
+        <li><i class="icon-large icon-pencil"></i> icon-pencil</li>
+        <li><i class="icon-large icon-map-marker"></i> icon-map-marker</li>
+        <li><i class="icon-large icon-adjust"></i> icon-adjust</li>
+        <li><i class="icon-large icon-tint"></i> icon-tint</li>
+        <li><i class="icon-large icon-edit"></i> icon-edit</li>
+        <li><i class="icon-large icon-share"></i> icon-share</li>
+        <li><i class="icon-large icon-check"></i> icon-check</li>
+        <li><i class="icon-large icon-move"></i> icon-move</li>
+        <li><i class="icon-large icon-step-backward"></i> icon-step-backward</li>
+        <li><i class="icon-large icon-fast-backward"></i> icon-fast-backward</li>
+      
+</ul>
+</div>
+ 
