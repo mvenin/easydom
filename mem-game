@@ -66,6 +66,29 @@ MemGame = {
    });
  },  
 
+addCellClickHandler: function( img_storage ){
+ var pairs = MemGame.shuffle(MemGame.initPairsArray());
+ $('table div').each( function(i, el){
+   $(el).click( function(ev){ 
+    var src = $(ev.target);   
+    var id = src.attr('id');
+    var icon = $(img_storage.get(pairs[id])).clone();
+    if( $(src).is('i.icon-large') || $(src).find('i.icon-large').length > 0 ){ 
+     console.log(id);
+    } else {
+      $(this).hide().append( icon ).fadeIn(1000);
+      if( $(MemGame.state.lastItem).attr('class') === $(icon).attr('class') ){
+        console.log( MemGame.state.lastItem );
+      } else {
+        $(MemGame.state.lastItem).remove();
+      }
+      MemGame.state.lastItem = icon;
+    }
+    
+   });
+ });
+},
+
 addToggleCellClickHandler: function( img_storage ){
  $('table div').each( function(i, el){
   $(el).click( function(ev){ 
@@ -106,8 +129,8 @@ addToggleCellClickHandler: function( img_storage ){
 $(document).ready(function(){
 	img_storage = $('div.img-storage li i');
     MemGame.initTable('tbl');
-    MemGame.addShowCellClickHandler( img_storage );  
-    MemGame.fillTable(img_storage);      
+    MemGame.addCellClickHandler( img_storage );  
+    //MemGame.fillTable(img_storage);      
 });
 
 </script>
